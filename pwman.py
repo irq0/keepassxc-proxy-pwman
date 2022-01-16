@@ -65,7 +65,8 @@ def rofi(keys):
 @click.argument("key", nargs=1, required=False)
 @click.option("--clipboard", "mode", flag_value="clipboard")
 @click.option("--type", "mode", flag_value="type")
-@click.option("--print", "mode", flag_value="print", default=True)
+@click.option("--print", "mode", flag_value="print")
+@click.option("--gui", "mode", flag_value="gui", default=True)
 @click.option(
     "--format",
     "output_format",
@@ -96,7 +97,7 @@ def pwman(key, mode, output_format):
             print(json.dumps(entry))
         else:
             print(entry["login"] + ":" + entry["password"])
-    else:
+    elif mode == "gui":
         gui.show(entry)
 
 
