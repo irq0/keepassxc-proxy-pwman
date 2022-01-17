@@ -70,7 +70,7 @@ def rofi(keys):
 @click.option(
     "--format",
     "output_format",
-    type=click.Choice(["json", "plain"], case_sensitive=False),
+    type=click.Choice(["json", "plain", "password"], case_sensitive=False),
     default="plain",
 )
 def pwman(key, mode, output_format):
@@ -95,6 +95,8 @@ def pwman(key, mode, output_format):
     elif mode == "print":
         if output_format == "json":
             print(json.dumps(entry))
+        elif output_format == "password":
+            print(entry["password"])
         else:
             print(entry["login"] + ":" + entry["password"])
     elif mode == "gui":
