@@ -6,11 +6,13 @@ import subprocess
 
 import click
 import keepassxc_proxy_client.protocol
-import xdg
+import xdg.BaseDirectory
 
 import gui
 
-ASSOCIATE_FILENAME = pathlib.Path(xdg.xdg_config_home()) / "pwman" / "associate.json"
+ASSOCIATE_FILENAME = (
+    pathlib.Path(xdg.BaseDirectory.xdg_config_home) / "pwman" / "associate.json"
+)
 
 
 def find_entry(search_string, entries):
