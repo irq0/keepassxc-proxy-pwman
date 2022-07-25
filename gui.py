@@ -3,6 +3,7 @@ import datetime
 import json
 import os.path
 import re
+import subprocess
 import sys
 import tkinter
 from tkinter import Button
@@ -24,6 +25,11 @@ def plumb_string(s):
     bus = dbus.SessionBus()
     plumber = bus.get_object("org.irq0.cathica", "/org/irq0/cathica/Plumb")
     plumber.string(s)
+
+
+def clipboard_set(s):
+    subprocess.run(["xclip", "-in", "-selection", "primary"], input=s.encode("UTF-8"))
+    subprocess.run(["xclip", "-in", "-selection", "clipboard"], input=s.encode("UTF-8"))
 
 
 def notify(title, body):
@@ -64,8 +70,7 @@ class PwmanGui:
 
     def copy_x_to_clipboard(self, x):
         def copy_to_clipboard():
-            self.root.clipboard_clear()
-            self.root.clipboard_append(x)
+            clipboard_set(x)
 
         return copy_to_clipboard
 

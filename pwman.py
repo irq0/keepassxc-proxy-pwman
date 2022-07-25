@@ -91,7 +91,7 @@ def pwman(key, mode, output_format):
         entry["url"] = index_entry["url"]
 
     if mode == "clipboard":
-        subprocess.run(["xclip", "-i"], input=entry["password"].encode("UTF-8"))
+        gui.clipboard_set(entry["password"])
     elif mode == "type":
         subprocess.run(["xdotool", "type", "--delay", "100", entry["password"]])
     elif mode == "print":
