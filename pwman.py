@@ -56,7 +56,7 @@ def keepassxc_connect():
 
 def rofi(keys):
     result = subprocess.run(
-        ["rofi", "-dmenu", "-i", "-p", "Service: "],
+        ["rofi", "-dmenu", "-i", "-sort", "-p", "Service: "],
         capture_output=True,
         input="\n".join(keys).encode("UTF-8"),
     )
